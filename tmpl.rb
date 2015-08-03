@@ -2,26 +2,33 @@
 
 require 'fileutils'
 class Person
+  #Class which will return a has containing all the values from a given file
   attr_accessor :name,:account,:extension,:mac
+  #default initiator(should remove all the accessor in future)
   def initialize()
     @name = name
     @account = account
     @extension = extension
     @mac = mac
   end
-  def ret_hash
-    f = File.open('params.txt', "r")
-    phones = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc)}
+  #This will return a hash(nested hash)
+  def ret_hash(fn)
 
+    f = File.open(fn, "r")
+    #Create a hash object. &hash.default_proc is necessary for unlimited nested hash
+    phones = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc)}
+#loop through
     f.each_line do |line|
+      #if empty line go to next
       next if line == "\n"
 
-      macaddr = line.split(":")[0].downcase
+      macaddr = line.split(":")[0].downcase #assign values 
       ext = line.split(":")[1]
       acct = line.split(":")[2]
       d_name= line.split(":")[3]
       #  phones= Hash[]
       
+      # Fill has with values
       phones[macaddr]["account #{acct}"]["settings"] = [acct,ext,d_name]
       #  phones[macaddr][:accounts][:params1] = ["1","dfdf"]
       # Create and add a subhash.
@@ -42,24 +49,28 @@ class Person
       # accounts1["params"] = settings1
       #  puts params["macaddr"]
       end
-    return phones
+    return phones #return hash
   end
 end
+#Class which creates config file each mac address
 class Writefile
   def write_file(filename)
     p = Person.new()
-    pp = p.ret_hash
+    pp = p.ret_hash(filename)
+    #Iterate through hash
     pp.each do | key ,value |
-        open("cfg#{key}.xml",'w') do |f|
+      open("cfg#{key}.xml",'w') do |f|
+        #write the header
           f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
           f.puts "<gs_provision version=\"1\">"
           f.puts "<mac>#{key}</mac>"
           f.puts  "<config version=\"1\">"
           value.each do | k,v|
-            line = v["settings"][0]
+            line = v["settings"][0] # All the values are inside settings so take one by one
             acct = v["settings"][1]
             d_name = v["settings"][2].chomp
             #      value.values.each do |v|
+            #set the value according to the account no 
             if line == '1'
               f.puts "<P270>#{d_name}</P270>"
               f.puts "<P47>abc.com</P47>"
@@ -81,9 +92,9 @@ class Writefile
               f.puts "<P506>1111</P506>"
               f.puts "<P507>#{d_name}</P507>"
               f.puts "<P526>7999</P526>"
-
             end
           end
+          #write the footer
           f.puts "</config>"
           f.puts "</gs_provision>"
           
@@ -97,11 +108,6 @@ class Writefile
 end
 
 fh = Writefile.new()
-#data = fh.open_file('extlist.txt')
-#filename = "cfg#{macaddr}.xml"
-# f = File.open('params.txt', "r")
-p = Person.new()
-
 fh.write_file('params.txt')
 #   if mac.include?(macaddr)
 #     fh.fh_write_file(filename,'a',p)
