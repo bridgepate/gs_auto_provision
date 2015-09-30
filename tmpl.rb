@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
-
 require 'fileutils'
+
 class Person
   #Class which will return a has containing all the values from a given file
   attr_accessor :name,:account,:extension,:mac
@@ -13,7 +13,6 @@ class Person
   end
   #This will return a hash(nested hash)
   def ret_hash(fn)
-
     f = File.open(fn, "r")
     #Create a hash object. &hash.default_proc is necessary for unlimited nested hash
     phones = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc)}
@@ -55,6 +54,9 @@ end
 #Class which creates config file each mac address
 class Writefile
   def write_file(filename)
+    sip_server = "pbx1.ashs.internal"
+    pass = 9065
+    vm = 7999
     p = Person.new()
     pp = p.ret_hash(filename)
     #Iterate through hash
@@ -73,25 +75,25 @@ class Writefile
             #set the value according to the account no 
             if line == '1'
               f.puts "<P270>#{d_name}</P270>"
-              f.puts "<P47>abc.com</P47>"
+              f.puts "<P47>#{sip_server}</P47>"
               f.puts "<P35>#{acct}</P35>"
-              f.puts "<P34>1111</P34>"
+              f.puts "<P34>#{pass}</P34>"
               f.puts "<P3>#{d_name}</P3>"
-              f.puts "<P33>7999</P33>"
+              f.puts "<P33>#{vm}</P33>"
             elsif line == '2'
               f.puts "<P417>#{d_name}</P417>"
-              f.puts "<P402>abc.com</P402>"
+              f.puts "<P402>#{sip_server}</P402>"
               f.puts "<P404>#{acct}</P404>"
-              f.puts "<P406>1111</P406>"
+              f.puts "<P406>#{pass}</P406>"
               f.puts "<P407>#{d_name}</P407>"
-              f.puts "<P426>7999</P426>"
+              f.puts "<P426>#{vm}</P426>"
             elsif line == '3'
               f.puts "<P517>#{d_name}</P517>"
-              f.puts "<P502>abc.com</P502>"
+              f.puts "<P502>#{sip_server}</P502>"
               f.puts "<P504>#{acct}</P504>"
-              f.puts "<P506>1111</P506>"
+              f.puts "<P506>#{pass}</P506>"
               f.puts "<P507>#{d_name}</P507>"
-              f.puts "<P526>7999</P526>"
+              f.puts "<P526>#{vm}</P526>"
             end
           end
           #write the footer
@@ -102,8 +104,8 @@ class Writefile
       end
 #    end
   end
- #       text = text.gsub(/# P270 =/, "P270 = #{person.name}").gsub(/P47 =/, "P47 = abc.com").gsub(/P35 =/, "P35 = #{person.extension}").gsub(/P34 =/, "P34 = 1111").gsub(/P3 =/, "P3 = #{person.name}").gsub(/P33 =/, "P33 = #{person.extension}")    
-  #      text = text.gsub(/# P417 =/, "P417 = #{person.name}").gsub(/P402 =/, "P402 = abc.com").gsub(/P404 =/, "P404 = #{person.extension}").gsub(/P406 =/, "P406 = 1111").gsub(/P407 =/, "P407 = #{person.name}").gsub(/P426 =/, "P426 = #{person.extension}")    
+ #       text = text.gsub(/# P270 =/, "P270 = #{person.name}").gsub(/P47 =/, "P47 = #{sip_server}").gsub(/P35 =/, "P35 = #{person.extension}").gsub(/P34 =/, "P34 = #{pass}").gsub(/P3 =/, "P3 = #{person.name}").gsub(/P33 =/, "P33 = #{person.extension}")    
+  #      text = text.gsub(/# P417 =/, "P417 = #{person.name}").gsub(/P402 =/, "P402 = #{sip_server}").gsub(/P404 =/, "P404 = #{person.extension}").gsub(/P406 =/, "P406 = #{pass}").gsub(/P407 =/, "P407 = #{person.name}").gsub(/P426 =/, "P426 = #{person.extension}")    
 
 end
 
