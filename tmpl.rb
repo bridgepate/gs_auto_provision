@@ -16,7 +16,7 @@ class Person
     f = File.open(fn, "r")
     #Create a hash object. &hash.default_proc is necessary for unlimited nested hash
     phones = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc)}
-#loop through
+    #loop through
     f.each_line do |line|
       #if empty line go to next
       next if line == "\n"
@@ -47,9 +47,11 @@ class Person
       # settings1["Display Name"] = d_name
       # accounts1["params"] = settings1
       #  puts params["macaddr"]
-      end
+    end
     return phones #return hash
   end
+
+  
 end
 #Class which creates config file each mac address
 class Writefile
@@ -63,48 +65,48 @@ class Writefile
     pp.each do | key ,value |
       open("cfg#{key}.xml",'w') do |f|
         #write the header
-          f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
-          f.puts "<gs_provision version=\"1\">"
-          f.puts "<mac>#{key}</mac>"
-          f.puts  "<config version=\"1\">"
-          value.each do | k,v|
-            line = v["settings"][0] # All the values are inside settings so take one by one
-            acct = v["settings"][1]
-            d_name = v["settings"][2].chomp
-            #      value.values.each do |v|
-            #set the value according to the account no 
-            if line == '1'
-              f.puts "<P270>#{d_name}</P270>"
-              f.puts "<P47>#{sip_server}</P47>"
-              f.puts "<P35>#{acct}</P35>"
-              f.puts "<P34>#{pass}</P34>"
-              f.puts "<P3>#{d_name}</P3>"
-              f.puts "<P33>#{vm}</P33>"
-            elsif line == '2'
-              f.puts "<P417>#{d_name}</P417>"
-              f.puts "<P402>#{sip_server}</P402>"
-              f.puts "<P404>#{acct}</P404>"
-              f.puts "<P406>#{pass}</P406>"
-              f.puts "<P407>#{d_name}</P407>"
-              f.puts "<P426>#{vm}</P426>"
-            elsif line == '3'
-              f.puts "<P517>#{d_name}</P517>"
-              f.puts "<P502>#{sip_server}</P502>"
-              f.puts "<P504>#{acct}</P504>"
-              f.puts "<P506>#{pass}</P506>"
-              f.puts "<P507>#{d_name}</P507>"
-              f.puts "<P526>#{vm}</P526>"
-            end
+        f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
+        f.puts "<gs_provision version=\"1\">"
+        f.puts "<mac>#{key}</mac>"
+        f.puts  "<config version=\"1\">"
+        value.each do | k,v|
+          line = v["settings"][0] # All the values are inside settings so take one by one
+          acct = v["settings"][1]
+          d_name = v["settings"][2].chomp
+          #      value.values.each do |v|
+          #set the value according to the account no 
+          if line == '1'
+            f.puts "<P270>#{d_name}</P270>"
+            f.puts "<P47>#{sip_server}</P47>"
+            f.puts "<P35>#{acct}</P35>"
+            f.puts "<P34>#{pass}</P34>"
+            f.puts "<P3>#{d_name}</P3>"
+            f.puts "<P33>#{vm}</P33>"
+          elsif line == '2'
+            f.puts "<P417>#{d_name}</P417>"
+            f.puts "<P402>#{sip_server}</P402>"
+            f.puts "<P404>#{acct}</P404>"
+            f.puts "<P406>#{pass}</P406>"
+            f.puts "<P407>#{d_name}</P407>"
+            f.puts "<P426>#{vm}</P426>"
+          elsif line == '3'
+            f.puts "<P517>#{d_name}</P517>"
+            f.puts "<P502>#{sip_server}</P502>"
+            f.puts "<P504>#{acct}</P504>"
+            f.puts "<P506>#{pass}</P506>"
+            f.puts "<P507>#{d_name}</P507>"
+            f.puts "<P526>#{vm}</P526>"
           end
-          #write the footer
-          f.puts "</config>"
-          f.puts "</gs_provision>"
-          
         end
+        #write the footer
+        f.puts "</config>"
+        f.puts "</gs_provision>"
+        
       end
-#    end
+    end
+    #    end
   end
- #       text = text.gsub(/# P270 =/, "P270 = #{person.name}").gsub(/P47 =/, "P47 = #{sip_server}").gsub(/P35 =/, "P35 = #{person.extension}").gsub(/P34 =/, "P34 = #{pass}").gsub(/P3 =/, "P3 = #{person.name}").gsub(/P33 =/, "P33 = #{person.extension}")    
+  #       text = text.gsub(/# P270 =/, "P270 = #{person.name}").gsub(/P47 =/, "P47 = #{sip_server}").gsub(/P35 =/, "P35 = #{person.extension}").gsub(/P34 =/, "P34 = #{pass}").gsub(/P3 =/, "P3 = #{person.name}").gsub(/P33 =/, "P33 = #{person.extension}")    
   #      text = text.gsub(/# P417 =/, "P417 = #{person.name}").gsub(/P402 =/, "P402 = #{sip_server}").gsub(/P404 =/, "P404 = #{person.extension}").gsub(/P406 =/, "P406 = #{pass}").gsub(/P407 =/, "P407 = #{person.name}").gsub(/P426 =/, "P426 = #{person.extension}")    
 
 end
