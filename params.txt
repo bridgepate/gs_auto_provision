@@ -3,4 +3,4 @@
 000b8245c1c0:7921:2:Mario Becroft:foo.rb
 000B825E5011:7970:1:Mario Becroft:base2140conf.rb
 000B825E5011:7972:3:IT Office:base2140conf.rb
-000B8264BE08:7930:1:GXP 2140:base2140conf.rb
+000B8264BE08:7930:1:GXP 2140:reception.rb
