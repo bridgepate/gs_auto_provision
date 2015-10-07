@@ -61,14 +61,18 @@ class Readfiles
 
   # Read the whole file
   def read_files(f)
+    f =  f.reverse # reverse array we want to apply config of the supplied config from the main config file and because we are using hash it will take value from last config and overwrite it.
     conf = Hash.new
-    i =  f.length
+#    i =  f.length
+    #    puts i
+    i = 0
     f.each do |ff|
       file_read = File.open(ff,'r')
       #    i =  i - 1
       file_read.each_with_index do |line,index|
-        #read the whole file of the last file in the passed array of files otherwise leave the first line as it would not have any attribute
-        if index == 0 && i > 1
+        #read the whole file of the first file in the passed array of files otherwise leave the first line as it would not have any attribute
+
+        if index == 0 && i > 0
           next
         else
           attr = line.split("=")[0]
@@ -76,7 +80,7 @@ class Readfiles
           conf[attr] = val
         end
       end
-      i = i - 1 #counter for the array of files 
+      i = i + 1 #counter for the array of files
     end
     return conf #return the hash 
   end
