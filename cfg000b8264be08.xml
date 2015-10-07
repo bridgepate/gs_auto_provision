@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <gs_provision version="1">
-<mac>000b825e5011</mac>
+<mac>000b8264be08</mac>
 <config version="1">
 <P2981>0</P2981>
 <P694>97</P694>
@@ -1320,23 +1320,11 @@
 <P2339>0</P2339>
 <P6360>0</P6360>
 <P693>1</P693>
-<P417>Brijesh Patel</P417>
-<P402>pbx1.ashs.internal</P402>
-<P404>7971</P404>
-<P406>9065</P406>
-<P407>Brijesh Patel</P407>
-<P426>7999</P426>
-<P270>Mario Becroft</P270>
+<P270>GXP 2140</P270>
 <P47>pbx1.ashs.internal</P47>
-<P35>7970</P35>
+<P35>7930</P35>
 <P34>9065</P34>
-<P3>Mario Becroft</P3>
+<P3>GXP 2140</P3>
 <P33>7999</P33>
-<P517>IT Office</P517>
-<P502>pbx1.ashs.internal</P502>
-<P504>7972</P504>
-<P506>9065</P506>
-<P507>IT Office</P507>
-<P526>7999</P526>
 </config>
 </gs_provision>
