@@ -12,24 +12,37 @@ class Person
     @mac = mac
   end
   #This will return a hash(nested hash)
-  def ret_hash(fn)
-    f = File.open(fn, "r")
+  def ret_hash
+#    f = File.open(fn, "r")
     #Create a hash object. &hash.default_proc is necessary for unlimited nested hash
     phones = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc)}
-    #loop through
-    f.each_line do |line|
-      #if empty line go to next
-      next if line == "\n"
-
-      macaddr = line.split(":")[0].downcase #assign values 
-      l_no = line.split(":")[1]
-      acct = line.split(":")[2]
-      d_name= line.split(":")[3]
-      c_file = line.split(":")[4]
+    CONFIG.each do |key,value|
+      # puts value[:hostname]
+      # puts value[:ipaddress]
+      # puts value[:macaddress]
+      ac =  value[:accounts]
+      ac.each do | aa|
+            #if empty line go to next
+      #next if line == "\n"
+        macaddr = value[:macaddress].downcase
+        c_file = value[:config]
+        acct = aa[1].split(",")[0]
+        l_no = aa[1].split(",")[1]
+        d_name = aa[1].split(",")[2]
+      # macaddr = line.split(":")[0].downcase #assign values 
+      # l_no = line.split(":")[1]
+      # acct = line.split(":")[2]
+      # d_name= line.split(":")[3]
+      # c_file = line.split(":")[4]
       #  phones= Hash[]
-      
-      # Fill has with values
-      phones[macaddr][c_file]["account #{acct}"]["settings"] = [acct,l_no,d_name]
+      # Fill has with values it adds settings for the relevant mac address 
+      phones[macaddr][c_file]["account #{l_no}"]["settings"] = [acct,l_no,d_name]
+
+      end
+    end
+    #loop through
+#    f.each_line do |line|
+
       #  phones[macaddr][:accounts][:params1] = ["1","dfdf"]
       # Create and add a subhash.
       # accounts = Hash[]
@@ -48,8 +61,7 @@ class Person
       # settings1["Display Name"] = d_name
       # accounts1["params"] = settings1
       #  puts params["macaddr"]
-    end
-#    puts phones
+ #   end
     return phones #return hash
   end
 end
@@ -87,17 +99,19 @@ class Readfiles
 end
 #Class which creates config file each mac address
 class Writefile
-  def write_file(filename)
+  def write_file
     sip_server = "pbx1.ashs.internal"
     pass = 9065
     vm = 7999
     p = Person.new()
-    pp = p.ret_hash(filename)
+    pp = p.ret_hash
     rf = Readfiles.new() # Object for reading files recursively
     #Iterate through nested hash First get the macaddr
+
     pp.each do | key ,value |
       open("cfg#{key}.xml",'w') do |f|
         #write the header
+        puts "Generating cfg#{key}.xml file"
         f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
         f.puts "<gs_provision version=\"1\">"
         f.puts "<mac>#{key}</mac>"
@@ -131,8 +145,9 @@ class Writefile
 #          puts kk
           #now get the settings
           vv.each do |k,v|
-            line = v["settings"][0] # All the values are inside settings so take one by one
-            acct = v["settings"][1]
+
+            acct = v["settings"][0] # All the values are inside settings so take one by one
+            line = v["settings"][1]
             d_name = v["settings"][2].chomp
             #      value.values.each do |v|
             #set the value according to the account no 
@@ -174,7 +189,7 @@ class Writefile
 end
 
 fh = Writefile.new() #object for writing file
-fh.write_file('params.txt') 
+fh.write_file
 
 #   if mac.include?(macaddr)
 #     fh.fh_write_file(filename,'a',p)
