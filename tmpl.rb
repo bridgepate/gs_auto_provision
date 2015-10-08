@@ -21,23 +21,23 @@ class Person
       # puts value[:ipaddress]
       # puts value[:macaddress]
       ac =  value[:accounts]
-      ac.each do | aa|
+      ac.each do | aa, bb|
             #if empty line go to next
       #next if line == "\n"
         macaddr = value[:macaddress].downcase
         c_file = value[:config]
-        acct = aa[1].split(",")[0]
-        l_no = aa[1].split(",")[1]
-        d_name = aa[1].split(",")[2]
-      # macaddr = line.split(":")[0].downcase #assign values 
+        ext = bb[:extension]
+        l_no = aa
+        d_name = bb[:displayname]
+        # macaddr = line.split(":")[0].downcase #assign values 
       # l_no = line.split(":")[1]
       # acct = line.split(":")[2]
       # d_name= line.split(":")[3]
       # c_file = line.split(":")[4]
       #  phones= Hash[]
       # Fill has with values it adds settings for the relevant mac address 
-      phones[macaddr][c_file]["account #{l_no}"]["settings"] = [acct,l_no,d_name]
-
+        phones[macaddr][c_file]["account #{l_no}"]["settings"] = [ext,l_no,d_name]
+        puts phones
       end
     end
     #loop through
