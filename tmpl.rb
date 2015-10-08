@@ -37,7 +37,6 @@ class Person
       #  phones= Hash[]
       # Fill has with values it adds settings for the relevant mac address 
         phones[macaddr][c_file]["account #{l_no}"]["settings"] = [ext,l_no,d_name]
-        puts phones
       end
     end
     #loop through
@@ -158,6 +157,7 @@ class Writefile
               f.puts "<P34>#{pass}</P34>"
               f.puts "<P3>#{d_name}</P3>"
               f.puts "<P33>#{vm}</P33>"
+              f.puts "<P337>#{sip_server}/phone/vm/mail/#{acct}</P337>"
             elsif line == '2'
               f.puts "<P417>#{d_name}</P417>"
               f.puts "<P402>#{sip_server}</P402>"
