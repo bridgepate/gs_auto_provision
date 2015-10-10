@@ -43,6 +43,12 @@ CONFIG = {
             :config => 'base2130conf.rb',
             :accounts => {'1' => {:extension => '7406',:dn => 'lgutteridge',:displayname => 'Lloyd Gutteridge'},'2' => {:extension => '7132',:displayname => '3B'}}
           },
+          :'gxp2130-012' => {
+            :macaddress => '000B82775007',
+            :ipaddress => '10.28.1.12',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7407',:dn => 'scatchpole',:displayname => 'Sharon Catchpole'},'2' => {:extension => '7132',:displayname => '3B'}}
+          },
           :'gxp2130-013' => {
             :macaddress => '000B82775055',
             :ipaddress => '10.28.1.13',
@@ -149,7 +155,7 @@ CONFIG = {
             :macaddress => '000B82775942',
             :ipaddress => '10.28.1.30',
             :config => 'base2130conf.rb',
-            :accounts => {'1' => {:extension => '7425',:dn => 'rouwejan',:displayname => 'Rachael Ouwejan'},'2' => {:extension => '7143',:displayname => '4C'}}
+            :accounts => {'1' => {:extension => '7425',:dn => 'rcann',:displayname => 'Rachael Cann'},'2' => {:extension => '7143',:displayname => '4C'}}
           },
             :'gxp2130-031' => {
             :macaddress => '000B82774F07',
@@ -173,7 +179,7 @@ CONFIG = {
             :macaddress => '000B826AA485',
             :ipaddress => '10.28.1.34',
             :config => 'base2130conf.rb',
-            :accounts => {'1' => {:extension => '7429',:dn => '7429',:displayname => 'wmcdonald'},'2' => {:extension => '7143',:displayname => '4C'}}
+            :accounts => {'1' => {:extension => '7429',:dn => 'wmcdonald',:displayname => 'Wendy McDoand'},'2' => {:extension => '7143',:displayname => '4C'}}
           },
             :'gxp2130-035' => {
             :macaddress => '000B8277503D',
@@ -211,5 +217,84 @@ CONFIG = {
             :config => 'base2130conf.rb',
             :accounts => {'1' => {:extension => '7435',:dn => 'kdaniel',:displayname => 'Kelly Daniel'},'2' => {:extension => '7144',:displayname => '4D'}}
           },
+          :'gxp2130-041' => {
+            :macaddress => '000B826AA489',
+            :ipaddress => '10.28.1.41',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7436',:dn => 'ttyrrell-baxter',:displayname => 'Tim Tyrrell-Baxter'},'2' => {:extension => '7153',:displayname => '5C'}}
+          },
+          :'gxp2130-042' => {
+            :macaddress => '000B82774DBC',
+            :ipaddress => '10.28.1.42',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7437',:dn => 'rouwejan',:displayname => 'Rachael Ouwejan'},'2' => {:extension => '7153',:displayname => '5C'}}
+          },
+          :'gxp2130-043' => {
+            :macaddress => '000B82775041',
+            :ipaddress => '10.28.1.43',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7438',:dn => 'lhoeft',:displayname => 'Liz Hoeft'},'2' => {:extension => '7153',:displayname => '5C'}}
+          },
+           :'gxp2130-044' => {
+            :macaddress => '000B8277503E',
+            :ipaddress => '10.28.1.44',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7439',:dn => 'ntaewa',:displayname => 'Nick Taewa'},'2' => {:extension => '7153',:displayname => '5C'}}
+          },
+           :'gxp2130-045' => {
+            :macaddress => '000B82774F03',
+            :ipaddress => '10.28.1.45',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7440',:dn => 'akingston',:displayname => 'Andrew Kingston'},'2' => {:extension => '7153',:displayname => '5C'}}
+          },
+          :'gxp2130-046' => {
+            :macaddress => '000B82774F04',
+            :ipaddress => '10.28.1.46',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7441',:dn => 'rlongley',:displayname => 'Rashida Longley'},'2' => {:extension => '7153',:displayname => '5C'}}
+          },
+          :'gxp2130-047' => {
+            :macaddress => '000B8277503B',
+            :ipaddress => '10.28.1.47',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7442',:dn => 'tshaw',:displayname => 'Tim Shaw'},'2' => {:extension => '7154',:displayname => '5D'}}
+          },
+          :'gxp2130-048' => {
+            :macaddress => '000B8277503F',
+            :ipaddress => '10.28.1.48',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7443',:dn => 'jstokes',:displayname => 'Jessica Stokes'},'2' => {:extension => '7154',:displayname => '5D'}}
+          },
+          :'gxp2130-049' => {
+            :macaddress => '000B82774DC0',
+            :ipaddress => '10.28.1.49',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7444',:dn => 'lgeck',:displayname => 'Louise Geck'},'2' => {:extension => '7154',:displayname => '5D'}}
+          },
+          :'gxp2130-050' => {
+            :macaddress => '000B8277503C',
+            :ipaddress => '10.28.1.50',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7445',:dn => 'tclare',:displayname => 'Tamasyn Clare'},'2' => {:extension => '7154',:displayname => '5D'}}
+          },
+          :'gxp2130-051' => {
+            :macaddress => '000B82774DBF',
+            :ipaddress => '10.28.1.51',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7446',:dn => 'pstevens',:displayname => 'Paul Stevens'},'2' => {:extension => '7154',:displayname => '5D'}}
+          },
+          :'gxp2130-052' => {
+            :macaddress => '000B82774DBD',
+            :ipaddress => '10.28.1.52',
+            :config => 'base2130conf.rb',
+            :accounts => {'1' => {:extension => '7447',:dn => 'asteel',:displayname => 'Adrian Steel'},'2' => {:extension => '7154',:displayname => '5D'}}
+          },
+          :'gxp2140-071' => {
+            :macaddress => '000B8264BE08',
+            :ipaddress => '10.28.1.71',
+            :config => 'base2140conf.rb',
+            :accounts => {'1' => {:extension => '7215',:dn => 'bpatel',:displayname => 'Brijesh Patel'},'2' => {:extension => '7003',:displayname => 'IT'}}
+          },
+
 
 }
