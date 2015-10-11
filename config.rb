@@ -443,5 +443,13 @@ CONFIG = {
             :accounts => {'1' => {:extension => '7232',:dn => 'khamilton',:displayname => 'Katy Hamilton'}}
             
             
-          }
+          },
+          :'gxp2140-096' => {
+            :macaddress => '000B8264BE0A',
+            :ipaddress => '10.28.1.96',
+            :config => 'base2140conf.rb',
+            :accounts => {'1' => {:extension => '7233',:dn => 'rclaxton',:displayname => 'Robyn Claxton'}}
+            
+  }
+
 }
