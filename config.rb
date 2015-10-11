@@ -398,7 +398,7 @@ CONFIG = {
             :macaddress => '000B82629F04',
             :ipaddress => '10.28.1.88',
             :config => 'base2140conf.rb',
-            :accounts => {'1' => {:extension => '7200',:dn => 'bcavanah',:displayname => 'Barbara Cavanah'}}
+            :accounts => {'1' => {:extension => '7200',:dn => 'bcavanagh',:displayname => 'Barbara Cavanagh'}}
           },
           :'gxp2140-089' => {
             :macaddress => '000B82629FAA',
