@@ -108,7 +108,7 @@ class Writefile
     #Iterate through nested hash First get the macaddr
 
     pp.each do | key ,value |
-      open("cfg#{key}.xml",'w') do |f|
+      open("/var/lib/tftpboot/cfg#{key}.xml",'w') do |f|
         #write the header
         puts "Generating cfg#{key}.xml file"
         f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
