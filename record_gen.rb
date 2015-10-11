@@ -57,7 +57,7 @@ dhcp_file ="/tmp/phones.conf"
       d.printf "#{rip}\t\tPTR\t#{kk}.ashs.internal.\n"
     end
   end
-  sip_file="/tmp/sip_provisioned.conf"
+  sip_file="/tmp/sip-provisioned.conf"
   open(sip_file,'w') do |s|
     sip.each do | ss,vvv|
       s.puts "[#{vvv}](std-phone)"
