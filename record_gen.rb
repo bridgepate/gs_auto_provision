@@ -18,8 +18,9 @@ CONFIG.each do |key,value|
   a.each do | a,b|
     d = b[:dn].to_s
     ex = b[:extension]
+    displayname = b[:displayname]
      if !(d.empty?)
-       sip[d] = ex
+       sip[d] = "#{ex},#{displayname}"
      else
        #array for the extension which doesn't have dn ( for creating sip accounts without vm)
        null_dn << ex
@@ -40,6 +41,8 @@ dhcp_file ="/tmp/phones.conf"
        d.puts
     end
   end
+
+
   dns_file ="/tmp/dns.conf"
   open(dns_file,'w') do  |d|
     dhcp.each do | k,v|
@@ -47,7 +50,8 @@ dhcp_file ="/tmp/phones.conf"
       d.printf "#{k}\t\tA\t#{i}\n"
     end
   end
-    rev_dns_file ="/tmp/rev_dns.conf"
+
+  rev_dns_file ="/tmp/rev_dns.conf"
   open(rev_dns_file,'w') do  |d|
     dhcp.each do | kk,vv|
       i = vv.split(";")[1]
@@ -57,16 +61,26 @@ dhcp_file ="/tmp/phones.conf"
       d.printf "#{rip}\t\tPTR\t#{kk}.ashs.internal.\n"
     end
   end
+
   sip_file="/tmp/sip-provisioned.conf"
   open(sip_file,'w') do |s|
     sip.each do | ss,vvv|
-      s.puts "[#{vvv}](std-phone)"
-      s.puts "  mailbox=#{vvv}"
+      ext = vvv.split(",")[0]
+      disname = vvv.split(",")[1]
+      s.puts "[#{ext}](std-phone)"
+      s.puts "  mailbox=#{ext}"
 #      end
     end
-
     null_dn.uniq.each do | n|
       s.puts "[#{n}](std-phone)"
+    end
+  end
+v_file="/tmp/vm-provisioned.conf"
+open(v_file,'w') do |s|
+    sip.each do | ss,vvv|
+      ext = vvv.split(",")[0]
+      disname = vvv.split(",")[1]
+      s.puts "#{ext} => 1234,#{disname},#{ss}@ashs.school.nz"
     end
   end
   
