@@ -3,6 +3,7 @@ require 'fileutils'
 require './config'
 dhcp = Hash[]
 sip = Hash[]
+null_dn = []
 CONFIG.each do |key,value|
   mac = value[:macaddress]
   revip = value[:ipaddress]
@@ -19,12 +20,15 @@ CONFIG.each do |key,value|
     ex = b[:extension]
      if !(d.empty?)
        sip[d] = ex
-     end
+     else
+       #array for the extension which doesn't have dn ( for creating sip accounts without vm)
+       null_dn << ex
+    end
   end
    #print reverse dns record
 #   printf "#{rip}\t\tPTR\t#{key}\n"
-
 end
+
 dhcp_file ="/tmp/phones.conf"
   open(dhcp_file,'w') do  |d|
     dhcp.each do | k,v|
@@ -58,6 +62,11 @@ dhcp_file ="/tmp/phones.conf"
     sip.each do | ss,vvv|
       s.puts "[#{vvv}](std-phone)"
       s.puts "  mailbox=#{vvv}"
+#      end
+    end
+
+    null_dn.uniq.each do | n|
+      s.puts "[#{n}](std-phone)"
     end
   end
   
@@ -68,9 +77,9 @@ dhcp_file ="/tmp/phones.conf"
     dn =  v[:dn].to_s
     if !(dn.empty?)
       ext = v[:extension]
-      cmd = "ldapsearch -xh ldap-0000.ashs.internal -b 'uid=#{dn},ou=People,dc=ashs,dc=internal' telephoneNumber| grep -w '^telephoneNumber'"
-      cmd_out =  system(cmd)
-      if cmd_out == true
+      cmd = "ldapsearch -xh ldap-0000.ashs.internal -b 'uid=#{dn},ou=People,dc=ashs,dc=internal' telephoneNumber| grep -w '^telephoneNumber'> /dev/null "
+      system(cmd)
+      if cmd == true
         puts "dn: uid=#{dn},ou=People,dc=ashs,dc=internal"
         puts "changetype: modify" 
         puts "replace: telephoneNumber" 
