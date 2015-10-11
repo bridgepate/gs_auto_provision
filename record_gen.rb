@@ -62,7 +62,7 @@ dhcp_file ="/tmp/phones.conf"
     end
   end
 
-  sip_file="/tmp/sip-provisioned.conf"
+  sip_file="/etc/asterisk/sip-provisioned.conf"
   open(sip_file,'w') do |s|
     sip.each do | ss,vvv|
       ext = vvv.split(",")[0]
@@ -75,7 +75,7 @@ dhcp_file ="/tmp/phones.conf"
       s.puts "[#{n}](std-phone)"
     end
   end
-v_file="/tmp/vm-provisioned.conf"
+v_file="/etc/asterisk/voicemail-provisioned.conf"
 open(v_file,'w') do |s|
     sip.each do | ss,vvv|
       ext = vvv.split(",")[0]
@@ -92,8 +92,9 @@ open(v_file,'w') do |s|
     if !(dn.empty?)
       ext = v[:extension]
       cmd = "ldapsearch -xh ldap-0000.ashs.internal -b 'uid=#{dn},ou=People,dc=ashs,dc=internal' telephoneNumber| grep -w '^telephoneNumber'> /dev/null "
-      system(cmd)
-      if cmd == true
+#      cmd = "ldapsearch -xh ldap-0000.ashs.internal -b 'uid=#{dn},ou=People,dc=ashs,dc=internal' telephoneNumber| grep -w '^telephoneNumber'"
+      cmd_out = system(cmd)
+      if cmd_out == true
         puts "dn: uid=#{dn},ou=People,dc=ashs,dc=internal"
         puts "changetype: modify" 
         puts "replace: telephoneNumber" 

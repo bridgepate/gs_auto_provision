@@ -102,9 +102,9 @@ end
 #Class which creates config file each mac address
 class Writefile
   def write_file
-    sip_server = "pbx1.ashs.internal"
-    pass = "*97"
-    vm = 7999
+    sip_server = "pbx"
+    pass = "xmscnuf3k8"
+    vm = "*97"
     p = Person.new()
     pp = p.ret_hash
     rf = Readfiles.new() # Object for reading files recursively
@@ -163,6 +163,11 @@ class Writefile
               f.puts "<P33>#{vm}</P33>"
               if dn != nil #no vm for places and shared phone should also remove vm 
                 f.puts "<P337>#{sip_server}/phone/vm/mail/#{acct}/</P337>"
+                f.puts "<P352>VoiceMail</P352>"
+              else
+                f.puts "<P337></P337>"
+                f.puts "<P352></P352>"
+                
              end
             elsif line == '2'
               f.puts "<P417>#{d_name}</P417>"
