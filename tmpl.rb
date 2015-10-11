@@ -28,6 +28,7 @@ class Person
         c_file = value[:config]
         ext = bb[:extension]
         l_no = aa
+        dn = bb[:dn]
         d_name = bb[:displayname]
         # macaddr = line.split(":")[0].downcase #assign values 
       # l_no = line.split(":")[1]
@@ -36,7 +37,7 @@ class Person
       # c_file = line.split(":")[4]
       #  phones= Hash[]
       # Fill has with values it adds settings for the relevant mac address 
-        phones[macaddr][c_file]["account #{l_no}"]["settings"] = [ext,l_no,d_name]
+        phones[macaddr][c_file]["account #{l_no}"]["settings"] = [ext,l_no,d_name,dn]
       end
     end
     #loop through
@@ -60,9 +61,11 @@ class Person
       # settings1["Display Name"] = d_name
       # accounts1["params"] = settings1
       #  puts params["macaddr"]
- #   end
+    #   end
     return phones #return hash
+
   end
+  
 end
 class Readfiles
   def read_firstline(filename)
@@ -100,7 +103,7 @@ end
 class Writefile
   def write_file
     sip_server = "pbx1.ashs.internal"
-    pass = 9065
+    pass = "*97"
     vm = 7999
     p = Person.new()
     pp = p.ret_hash
@@ -108,7 +111,7 @@ class Writefile
     #Iterate through nested hash First get the macaddr
 
     pp.each do | key ,value |
-      open("/var/lib/tftpboot/cfg#{key}.xml",'w') do |f|
+      open("/tmp/cfg#{key}.xml",'w') do |f|
         #write the header
         puts "Generating cfg#{key}.xml file"
         f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
@@ -148,6 +151,7 @@ class Writefile
             acct = v["settings"][0] # All the values are inside settings so take one by one
             line = v["settings"][1]
             d_name = v["settings"][2].chomp
+            dn = v["settings"][3]
             #      value.values.each do |v|
             #set the value according to the account no 
             if line == '1'
@@ -157,7 +161,9 @@ class Writefile
               f.puts "<P34>#{pass}</P34>"
               f.puts "<P3>#{d_name}</P3>"
               f.puts "<P33>#{vm}</P33>"
-              f.puts "<P337>#{sip_server}/phone/vm/mail/#{acct}</P337>"
+              if dn != nil #no vm for places and shared phone should also remove vm 
+                f.puts "<P337>#{sip_server}/phone/vm/mail/#{acct}/</P337>"
+             end
             elsif line == '2'
               f.puts "<P417>#{d_name}</P417>"
               f.puts "<P402>#{sip_server}</P402>"
