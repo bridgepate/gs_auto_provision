@@ -13,7 +13,7 @@ class Person
   end
   #This will return a hash(nested hash)
   def ret_hash
-#    f = File.open(fn, "r")
+    #    f = File.open(fn, "r")
     #Create a hash object. &hash.default_proc is necessary for unlimited nested hash
     phones = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc)}
     CONFIG.each do |key,value|
@@ -22,8 +22,8 @@ class Person
       # puts value[:macaddress]
       ac =  value[:accounts]
       ac.each do | aa, bb|
-            #if empty line go to next
-      #next if line == "\n"
+        #if empty line go to next
+        #next if line == "\n"
         macaddr = value[:macaddress].downcase
         c_file = value[:config]
         ext = bb[:extension]
@@ -31,36 +31,36 @@ class Person
         dn = bb[:dn]
         d_name = bb[:displayname]
         # macaddr = line.split(":")[0].downcase #assign values 
-      # l_no = line.split(":")[1]
-      # acct = line.split(":")[2]
-      # d_name= line.split(":")[3]
-      # c_file = line.split(":")[4]
-      #  phones= Hash[]
-      # Fill has with values it adds settings for the relevant mac address 
+        # l_no = line.split(":")[1]
+        # acct = line.split(":")[2]
+        # d_name= line.split(":")[3]
+        # c_file = line.split(":")[4]
+        #  phones= Hash[]
+        # Fill has with values it adds settings for the relevant mac address 
         phones[macaddr][c_file]["account #{l_no}"]["settings"] = [ext,l_no,d_name,dn]
       end
     end
     #loop through
-#    f.each_line do |line|
+    #    f.each_line do |line|
 
-      #  phones[macaddr][:accounts][:params1] = ["1","dfdf"]
-      # Create and add a subhash.
-      # accounts = Hash[]
-      # accounts["sip no #{acct}"] = acct
-      # phones[macaddr] = accounts
-      # settings = Hash[]
-      # settings["account no #{acct}"] = ext
-      # settings["Display Name"] = d_name
-      # accounts["params"] = settings
+    #  phones[macaddr][:accounts][:params1] = ["1","dfdf"]
+    # Create and add a subhash.
+    # accounts = Hash[]
+    # accounts["sip no #{acct}"] = acct
+    # phones[macaddr] = accounts
+    # settings = Hash[]
+    # settings["account no #{acct}"] = ext
+    # settings["Display Name"] = d_name
+    # accounts["params"] = settings
 
-      # accounts1 = Hash[]
-      # accounts1["sip no 2"] = acct
-      # phones[macaddr] = accounts1
-      # settings1 = Hash[]
-      # settings1["account no 7921"] = ext
-      # settings1["Display Name"] = d_name
-      # accounts1["params"] = settings1
-      #  puts params["macaddr"]
+    # accounts1 = Hash[]
+    # accounts1["sip no 2"] = acct
+    # phones[macaddr] = accounts1
+    # settings1 = Hash[]
+    # settings1["account no 7921"] = ext
+    # settings1["Display Name"] = d_name
+    # accounts1["params"] = settings1
+    #  puts params["macaddr"]
     #   end
     return phones #return hash
 
@@ -77,7 +77,7 @@ class Readfiles
   def read_files(f)
     f =  f.reverse # reverse array we want to apply config of the supplied config from the main config file and because we are using hash it will take value from last config and overwrite it.
     conf = Hash.new
-#    i =  f.length
+    #    i =  f.length
     #    puts i
     i = 0
     f.each do |ff|
@@ -121,7 +121,7 @@ class Writefile
         #now get the config filename from nested hash
         value.each do | kk,vv|
           kkk =  kk.chomp #get the config file specified in the masterfile(param.txt)
-#          puts "kkk is #{kkk}"
+          #          puts "kkk is #{kkk}"
           recursive = true #variable to read each file recursively
           @files = [] #Array to hold files to be read
           while recursive == true #Loop untill there is no more files to load
@@ -130,7 +130,7 @@ class Writefile
             ff =  fl.split(" ")[0] #split the fields
             fn = fl.split(" ")[1] #filename variable
             if ff != 'load' #if no more files to read from within then exit the loop
-#              puts "no more recursion"
+              #              puts "no more recursion"
               recursive = false
             end
             #  puts ff,fn
@@ -139,12 +139,12 @@ class Writefile
           final_conf = rf.read_files(@files) #get the hash from all the config file it ould be one or multiple files
           final_conf.each do | kkkk,vvvv |
             next if kkkk == "\n"
-              vvvv = vvvv.chomp
-#              kkkk = kkkk.chomp
-#            puts "vvvv is #{kkkk.inspect}"
+            vvvv = vvvv.chomp
+            #              kkkk = kkkk.chomp
+            #            puts "vvvv is #{kkkk.inspect}"
             f.puts "<#{kkkk}>#{vvvv}</#{kkkk}>"
           end
-#          puts kk
+          #          puts kk
           #now get the settings
           vv.each do |k,v|
 
@@ -168,7 +168,7 @@ class Writefile
                 f.puts "<P337></P337>"
                 f.puts "<P352></P352>"
                 
-             end
+              end
             elsif line == '2'
               f.puts "<P417>#{d_name}</P417>"
               f.puts "<P402>#{sip_server}</P402>"
@@ -214,7 +214,7 @@ fh.write_file
 #     fh.fh_write_file(filename,'w',p)
 # #      puts mac
 #   end
-  # data += line
+# data += line
 #  puts "#{p.name} #{p.account} #{p.extension}"
 
 #  puts phones
