@@ -1,6 +1,40 @@
 #!/usr/bin/ruby
 require 'fileutils'
 require './config'
+class Initialsettings
+
+  def fillvalues(initial_val)
+#fill the hash with null values related to the lines on the phone so that we can remove all the previous settings from the phone
+    #line 1
+
+    initial_val["P270"] = ""
+    initial_val["P271"] = "0"
+    initial_val["P47"] = ""
+    initial_val["P35"] = ""
+    initial_val["P34"] = ""
+    initial_val["P3"] = ""
+    initial_val["P33"] = ""
+    initial_val["P337"] = ""
+    initial_val["P352"] = ""
+    #line 2
+    initial_val["P417"] = ""
+    initial_val["P401"] = "0"
+    initial_val["P402"] = ""
+    initial_val["P404"] = ""
+    initial_val["P406"] = ""
+    initial_val["P407"] = ""
+    initial_val["P426"] = ""
+    #line 3
+    initial_val["P517"] = ""
+    initial_val["P501"] = "0"
+    initial_val["P502"] = ""
+    initial_val["P504"] = ""
+    initial_val["P506"] = ""
+    initial_val["P507"] = ""
+    initial_val["P526"] = ""
+#    return initial_val
+  end
+end
 class Person
   #Class which will return a has containing all the values from a given file
   attr_accessor :name,:account,:extension,:mac
@@ -109,9 +143,11 @@ class Writefile
     pp = p.ret_hash
     rf = Readfiles.new() # Object for reading files recursively
     #Iterate through nested hash First get the macaddr
+    init_val = Initialsettings.new()
 
     pp.each do | key ,value |
       mainconf = Hash.new #hash for putting initial values from config.rb
+      init_val.fillvalues(mainconf) #fill the hash with null values 
       open("/var/lib/tftpboot/cfg#{key}.xml",'w') do |f|
         #write the header
         puts "Generating cfg#{key}.xml file"
@@ -146,34 +182,43 @@ class Writefile
             #      value.values.each do |v|
             #set the value according to the account no 
             if line == '1'
-              mainconf["P270"] = "#{d_name}\n"
-              mainconf["P47"] = "#{sip_server}\n"
-              mainconf["P35"] = "#{acct}\n"
-              mainconf["P34"] = "#{pass}\n"
-              mainconf["P3"] = "#{d_name}\n"
-              mainconf["P33"] = "#{vm}\n"
+              mainconf["P270"] = "#{d_name}"
+              mainconf["P271"] = "1"
+              mainconf["P47"] = "#{sip_server}"
+              mainconf["P35"] = "#{acct}"
+              mainconf["P34"] = "#{pass}"
+              mainconf["P3"] = "#{d_name}"
+              mainconf["P33"] = "#{vm}"
               if dn != nil #no vm for places and shared phone should also remove vm 
                  mainconf["P337"] = "#{sip_server}/phone/vm/mail/#{acct}/\n"
                  mainconf["P352"] = "VoiceMail\n"
-               else
-                 mainconf["P337"] = "\n"
-                 mainconf["P352"] = "\n"
-               end
+              end
             elsif line == '2'
-              mainconf["P417"] = "#{d_name}\n"
-              mainconf["P402"] = "#{sip_server}\n"
-              mainconf["P404"] = "#{acct}\n"
-              mainconf["P406"] = "#{pass}\n"
-              mainconf["P407"] = "#{d_name}\n"
-              mainconf["P426"] = "#{vm}\n"
+              mainconf["P417"] = "#{d_name}"
+              mainconf["P402"] = "#{sip_server}"
+              mainconf["P401"] = "1"
+              mainconf["P404"] = "#{acct}"
+              mainconf["P406"] = "#{pass}"
+              mainconf["P407"] = "#{d_name}"
+              mainconf["P426"] = "#{vm}"
             elsif line == '3'
-              mainconf["P517"] = "#{d_name}\n"
-              mainconf["P502"] = "#{sip_server}\n"
-              mainconf["P504"] = "#{acct}\n"
-              mainconf["P506"] = "#{pass}\n"
-              mainconf["P507"] = "#{d_name}\n"
-              mainconf["P526"] = "#{vm}\n"
+              mainconf["P517"] = "#{d_name}"
+              mainconf["P501"] = "1"
+              mainconf["P502"] = "#{sip_server}"
+              mainconf["P504"] = "#{acct}"
+              mainconf["P506"] = "#{pass}"
+              mainconf["P507"] = "#{d_name}"
+              mainconf["P526"] = "#{vm}"
+            elsif line == '4'
+              mainconf["P617"] = "#{d_name}"
+              mainconf["P601"] = "1"
+              mainconf["P602"] = "#{sip_server}"
+              mainconf["P604"] = "#{acct}"
+              mainconf["P606"] = "#{pass}"
+              mainconf["P607"] = "#{d_name}"
+              mainconf["P626"] = "#{vm}"
             end
+            
           end
 
           final_conf = rf.read_files(@files,mainconf) #get the hash from all the config file it ould be one or multiple files
