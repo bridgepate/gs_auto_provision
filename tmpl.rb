@@ -5,33 +5,7 @@ class Initialsettings
 
   def fillvalues(initial_val)
 #fill the hash with null values related to the lines on the phone so that we can remove all the previous settings from the phone
-    #line 1
-
-    initial_val["P270"] = ""
-    initial_val["P271"] = "0"
-    initial_val["P47"] = ""
-    initial_val["P35"] = ""
-    initial_val["P34"] = ""
-    initial_val["P3"] = ""
-    initial_val["P33"] = ""
-    initial_val["P337"] = ""
-    initial_val["P352"] = ""
-    #line 2
-    initial_val["P417"] = ""
-    initial_val["P401"] = "0"
-    initial_val["P402"] = ""
-    initial_val["P404"] = ""
-    initial_val["P406"] = ""
-    initial_val["P407"] = ""
-    initial_val["P426"] = ""
-    #line 3
-    initial_val["P517"] = ""
-    initial_val["P501"] = "0"
-    initial_val["P502"] = ""
-    initial_val["P504"] = ""
-    initial_val["P506"] = ""
-    initial_val["P507"] = ""
-    initial_val["P526"] = ""
+    initial_val = {"P270" => "","P271" => "0","P47" => "","P35" => "","P34" => "","P3" => "",  "P33" => "", "P337" => "", "P352" => "","P417" => "", "P401" => "0","P402" => "","P404" => "","P406" => "","P407" => "", "P426" => "", "P517" => "", "P501" => "0", "P502" => "","P504" => "","P506" => "", "P507" => "","P526" => ""}
 #    return initial_val
   end
 end
@@ -147,8 +121,8 @@ class Writefile
 
     pp.each do | key ,value |
       mainconf = Hash.new #hash for putting initial values from config.rb
-      init_val.fillvalues(mainconf) #fill the hash with null values 
-      open("/var/lib/tftpboot/cfg#{key}.xml",'w') do |f|
+      mainconf = init_val.fillvalues(mainconf) #fill the hash with null values 
+      open("/tmp/cfg#{key}.xml",'w') do |f|
         #write the header
         puts "Generating cfg#{key}.xml file"
         f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
