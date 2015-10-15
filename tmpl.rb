@@ -2,13 +2,7 @@
 require 'fileutils'
 require './config'
 class Initialsettings
-<<<<<<< HEAD
-#test revert
-  def fillvalues(initial_val,m)
-=======
-
   def fillvalues(initial_val)
->>>>>>> parent of 30a443e... Remove function which creates hash. We already has hash in the config.rb why do we need to create hash out of hash instead read directly from the config.rb and assign values accordingly
 #fill the hash with null values related to the lines on the phone so that we can remove all the previous settings from the phone
     initial_val = {"P270" => "","P271" => "0","P47" => "","P35" => "","P34" => "","P3" => "",  "P33" => "", "P337" => "", "P352" => "","P417" => "", "P401" => "0","P402" => "","P404" => "","P406" => "","P407" => "", "P426" => "", "P517" => "", "P501" => "0", "P502" => "","P504" => "","P506" => "", "P507" => "","P526" => ""}
 #    return initial_val
