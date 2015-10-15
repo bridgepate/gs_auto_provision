@@ -38,12 +38,6 @@ class Person
         l_no = aa
         dn = bb[:dn]
         d_name = bb[:displayname]
-        # macaddr = line.split(":")[0].downcase #assign values 
-        # l_no = line.split(":")[1]
-        # acct = line.split(":")[2]
-        # d_name= line.split(":")[3]
-        # c_file = line.split(":")[4]
-        #  phones= Hash[]
         # Fill has with values it adds settings for the relevant mac address 
         phones[macaddr][c_file]["account #{l_no}"]["settings"] = [ext,l_no,d_name,dn]
       end
