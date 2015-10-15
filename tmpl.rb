@@ -2,14 +2,15 @@
 require 'fileutils'
 require './config'
 class Initialsettings
+<<<<<<< HEAD
 #test revert
   def fillvalues(initial_val,m)
+=======
+
+  def fillvalues(initial_val)
+>>>>>>> parent of 30a443e... Remove function which creates hash. We already has hash in the config.rb why do we need to create hash out of hash instead read directly from the config.rb and assign values accordingly
 #fill the hash with null values related to the lines on the phone so that we can remove all the previous settings from the phone
-    if m == "gxp2140"
-      initial_val = {"P270" => "","P271" => "0","P47" => "","P35" => "","P34" => "","P3" => "",  "P33" => "", "P337" => "", "P352" => "","P417" => "", "P401" => "0","P402" => "","P404" => "","P406" => "","P407" => "", "P426" => "", "P517" => "", "P501" => "0", "P502" => "","P504" => "","P506" => "", "P507" => "","P526" => "", "P617" => "","P601" => "0","P602" => "","P604" => "","P606" => "","P607" => "", "P626" => ""}
-    else
-      initial_val = {"P270" => "","P271" => "0","P47" => "","P35" => "","P34" => "","P3" => "",  "P33" => "", "P337" => "", "P352" => "","P417" => "", "P401" => "0","P402" => "","P404" => "","P406" => "","P407" => "", "P426" => "", "P517" => "", "P501" => "0", "P502" => "","P504" => "","P506" => "", "P507" => "","P526" => ""}
-    end
+    initial_val = {"P270" => "","P271" => "0","P47" => "","P35" => "","P34" => "","P3" => "",  "P33" => "", "P337" => "", "P352" => "","P417" => "", "P401" => "0","P402" => "","P404" => "","P406" => "","P407" => "", "P426" => "", "P517" => "", "P501" => "0", "P502" => "","P504" => "","P506" => "", "P507" => "","P526" => ""}
 #    return initial_val
   end
 end
@@ -60,6 +61,7 @@ class Readfiles
     f =  f.reverse # reverse array we want to apply config of the supplied config from the main config file and because we are using hash it will take value from last config and overwrite it.
  #   conf = Hash.new
     #    i =  f.length
+    #    puts i
     i = 0
     f.each do |ff|
       file_read = File.open(ff,'r')
@@ -87,28 +89,24 @@ class Writefile
     pass = "xmscnuf3k8"
     vm = "*97"
     p = Person.new()
-#    pp = p.ret_hash
+    pp = p.ret_hash
     rf = Readfiles.new() # Object for reading files recursively
     #Iterate through nested hash First get the macaddr
     init_val = Initialsettings.new()
-    CONFIG.each do | key ,value |
-#    pp.each do | key ,value |
-      model = key.to_s
-      model = model.split("-")[0]
+
+    pp.each do | key ,value |
       mainconf = Hash.new #hash for putting initial values from config.rb
-      mainconf = init_val.fillvalues(mainconf,model) #fill the hash with null values 
-      mac = value[:macaddress].downcase
-      kkk = value[:config]
-      open("/tmp/cfg#{mac}.xml",'w') do |f|
+      mainconf = init_val.fillvalues(mainconf) #fill the hash with null values 
+      open("/tmp/cfg#{key}.xml",'w') do |f|
         #write the header
-        puts "Generating cfg#{mac}.xml file"
+        puts "Generating cfg#{key}.xml file"
         f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
         f.puts "<gs_provision version=\"1\">"
-        f.puts "<mac>#{mac}</mac>"
+        f.puts "<mac>#{key}</mac>"
         f.puts  "<config version=\"1\">"
         #now get the config filename from nested hash
-        #value.each do | kk,vv|
-#          kkk =  kk.chomp #get the config file specified in the masterfile(param.txt)
+        value.each do | kk,vv|
+          kkk =  kk.chomp #get the config file specified in the masterfile(param.txt)
           #          puts "kkk is #{kkk}"
           recursive = true #variable to read each file recursively
           @files = [] #Array to hold files to be read
@@ -124,63 +122,55 @@ class Writefile
             #  puts ff,fn
             kkk = fn #read firstline of the included file(load 'xxxxx') in the next iteration
           end
-        ac =  value[:accounts]
-        ac.each do | aa, bb|
-          #if empty line go to next
-          #next if line == "\n"
-          ext = bb[:extension]
-          l_no = aa
-          dn = bb[:dn]
-          d_name = bb[:displayname]
-        # vv.each do |k,v|
-        
-          #   acct = v["settings"][0] # All the values are inside settings so take one by one
-          #   line = v["settings"][1]
-          #   d_name = v["settings"][2].chomp
-          #   dn = v["settings"][3]
-          #   #      value.values.each do |v|
-          #   #set the value according to the account no 
-            if l_no == '1'
+          vv.each do |k,v|
+
+            acct = v["settings"][0] # All the values are inside settings so take one by one
+            line = v["settings"][1]
+            d_name = v["settings"][2].chomp
+            dn = v["settings"][3]
+            #      value.values.each do |v|
+            #set the value according to the account no 
+            if line == '1'
               mainconf["P270"] = "#{d_name}"
               mainconf["P271"] = "1"
               mainconf["P47"] = "#{sip_server}"
-              mainconf["P35"] = "#{ext}"
+              mainconf["P35"] = "#{acct}"
               mainconf["P34"] = "#{pass}"
               mainconf["P3"] = "#{d_name}"
               mainconf["P33"] = "#{vm}"
               if dn != nil #no vm for places and shared phone should also remove vm 
-                 mainconf["P337"] = "#{sip_server}/phone/vm/mail/#{ext}/"
-                 mainconf["P352"] = "VoiceMail"
+                 mainconf["P337"] = "#{sip_server}/phone/vm/mail/#{acct}/\n"
+                 mainconf["P352"] = "VoiceMail\n"
               end
-            elsif l_no == '2'
+            elsif line == '2'
               mainconf["P417"] = "#{d_name}"
               mainconf["P402"] = "#{sip_server}"
               mainconf["P401"] = "1"
-              mainconf["P404"] = "#{ext}"
+              mainconf["P404"] = "#{acct}"
               mainconf["P406"] = "#{pass}"
               mainconf["P407"] = "#{d_name}"
               mainconf["P426"] = "#{vm}"
-            elsif l_no == '3'
+            elsif line == '3'
               mainconf["P517"] = "#{d_name}"
               mainconf["P501"] = "1"
               mainconf["P502"] = "#{sip_server}"
-              mainconf["P504"] = "#{ext}"
+              mainconf["P504"] = "#{acct}"
               mainconf["P506"] = "#{pass}"
               mainconf["P507"] = "#{d_name}"
               mainconf["P526"] = "#{vm}"
-            elsif l_no == '4'
+            elsif line == '4'
               mainconf["P617"] = "#{d_name}"
               mainconf["P601"] = "1"
               mainconf["P602"] = "#{sip_server}"
-              mainconf["P604"] = "#{ext}"
+              mainconf["P604"] = "#{acct}"
               mainconf["P606"] = "#{pass}"
               mainconf["P607"] = "#{d_name}"
               mainconf["P626"] = "#{vm}"
             end
             
-          # end
-        end
-        final_conf = rf.read_files(@files,mainconf) #get the hash from all the config file it ould be one or multiple files
+          end
+
+          final_conf = rf.read_files(@files,mainconf) #get the hash from all the config file it ould be one or multiple files
           final_conf.each do | kkkk,vvvv |
             next if kkkk == "\n"
             vvvv = vvvv.chomp
@@ -188,7 +178,7 @@ class Writefile
             f.puts "<#{kkkk}>#{vvvv}</#{kkkk}>"
           end
           #now get the settings
-        #end
+        end
         #write the footer
         f.puts "</config>"
         f.puts "</gs_provision>"
