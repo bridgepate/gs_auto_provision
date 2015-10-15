@@ -42,28 +42,6 @@ class Person
         phones[macaddr][c_file]["account #{l_no}"]["settings"] = [ext,l_no,d_name,dn]
       end
     end
-    #loop through
-    #    f.each_line do |line|
-
-    #  phones[macaddr][:accounts][:params1] = ["1","dfdf"]
-    # Create and add a subhash.
-    # accounts = Hash[]
-    # accounts["sip no #{acct}"] = acct
-    # phones[macaddr] = accounts
-    # settings = Hash[]
-    # settings["account no #{acct}"] = ext
-    # settings["Display Name"] = d_name
-    # accounts["params"] = settings
-
-    # accounts1 = Hash[]
-    # accounts1["sip no 2"] = acct
-    # phones[macaddr] = accounts1
-    # settings1 = Hash[]
-    # settings1["account no 7921"] = ext
-    # settings1["Display Name"] = d_name
-    # accounts1["params"] = settings1
-    #  puts params["macaddr"]
-    #   end
     return phones #return hash
 
   end
