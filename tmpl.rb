@@ -2,7 +2,7 @@
 require 'fileutils'
 require './config'
 class Initialsettings
-
+#test revert
   def fillvalues(initial_val,m)
 #fill the hash with null values related to the lines on the phone so that we can remove all the previous settings from the phone
     if m == "gxp2140"
