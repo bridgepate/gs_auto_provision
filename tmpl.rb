@@ -43,9 +43,7 @@ class Person
       end
     end
     return phones #return hash
-
   end
-  
 end
 class Readfiles
   def read_firstline(filename)
