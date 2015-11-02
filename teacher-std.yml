@@ -1,0 +1,25 @@
+config: base2130conf.yml
+P323: 16
+P302: Park 1
+P303: 7991
+P324: 16
+P305: Park 2
+P306: 7992
+P325: 0
+P308: 
+P309: 
+P326: 0
+P311: 
+P312: 
+P327: 4
+P314: Operator
+P315: 7000
+P328: 4
+P317: Counsellor
+P318: 7001
+P329: 4
+P320: Nurse
+P321: 7002
+P353: 4
+P355: Helpdesk
+P356: 7003
