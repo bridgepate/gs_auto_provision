@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 require 'fileutils'
+require 'yaml'
 require './config'
 class Initialsettings
 #test revert
@@ -60,20 +61,28 @@ class Readfiles
     f =  f.reverse # reverse array we want to apply config of the supplied config from the main config file and because we are using hash it will take value from last config and overwrite it.
  #   conf = Hash.new
     #    i =  f.length
+puts f
     i = 0
     f.each do |ff|
-      file_read = File.open(ff,'r')
+      file_read = YAML.load_file(ff)
       #    i =  i - 1
       file_read.each_with_index do |line,index|
         #read the whole file of the first file in the passed array of files otherwise leave the first line as it would not have any attribute
 
-        if index == 0 && i > 0
+#        if index == 0 && i > 0
+#          next
+ #       else
+          # attr = line.split("=")[0]
+          # val = line.split("=")[1].gsub(/^\'/,"").gsub(/\'$/,"") #get the value with removed quotes       
+        attr = line[0]
+        val = line[1] #get the value with removed quotes
+        if attr == "config"
+          
           next
         else
-          attr = line.split("=")[0]
-          val = line.split("=")[1].gsub(/^\'/,"").gsub(/\'$/,"") #get the value with removed quotes
           h[attr] = val
         end
+        #end
       end
       i = i + 1 #counter for the array of files
     end
@@ -99,7 +108,7 @@ class Writefile
       mainconf = init_val.fillvalues(mainconf,model) #fill the hash with null values 
       mac = value[:macaddress].downcase
       kkk = value[:config]
-      open("/var/lib/tftpboot/cfg#{mac}.xml",'w') do |f|
+      open("/tmp/confnew/cfg#{mac}.xml",'w') do |f|
         #write the header
         puts "Generating cfg#{mac}.xml file"
         f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
@@ -112,17 +121,27 @@ class Writefile
           #          puts "kkk is #{kkk}"
           recursive = true #variable to read each file recursively
           @files = [] #Array to hold files to be read
+        @files << kkk #initiate array from the main config file
           while recursive == true #Loop untill there is no more files to load
-            @files << kkk #Append array
-            fl = rf.read_firstline(kkk) #Get the first line
-            ff =  fl.split(" ")[0] #split the fields
-            fn = fl.split(" ")[1] #filename variable
-            if ff != 'load' #if no more files to read from within then exit the loop
-              #              puts "no more recursion"
+            cffile = YAML.load_file(kkk) 
+            cf = cffile["config"] # read config 
+            if cf 
+              cf.each do | cff|
+              @files << cff #Append array
+              kkk = cff
+            end
+            else
               recursive = false
             end
+#            fl = rf.read_firstline(kkk) #Get the first line
+#            ff =  fl.split(" ")[0] #split the fields
+#            fn = fl.split(" ")[1] #filename variable
+#            if ff != 'load' #if no more files to read from within then exit the loop
+              #              puts "no more recursion"
+  
+ #           end
             #  puts ff,fn
-            kkk = fn #read firstline of the included file(load 'xxxxx') in the next iteration
+              #kkk = cffile #read firstline of the included file(load 'xxxxx') in the next iteration
           end
         ac =  value[:accounts]
         ac.each do | aa, bb|
@@ -183,7 +202,7 @@ class Writefile
         final_conf = rf.read_files(@files,mainconf) #get the hash from all the config file it ould be one or multiple files
           final_conf.each do | kkkk,vvvv |
             next if kkkk == "\n"
-            vvvv = vvvv.chomp
+            vvvv = vvvv
             #            puts "vvvv is #{kkkk.inspect}"
             f.puts "<#{kkkk}>#{vvvv}</#{kkkk}>"
           end
