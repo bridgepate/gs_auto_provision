@@ -61,7 +61,7 @@ class Readfiles
     f =  f.reverse # reverse array we want to apply config of the supplied config from the main config file and because we are using hash it will take value from last config and overwrite it.
  #   conf = Hash.new
     #    i =  f.length
-puts f
+    
     i = 0
     f.each do |ff|
       file_read = YAML.load_file(ff)
