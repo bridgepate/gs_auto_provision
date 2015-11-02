@@ -1,0 +1,5 @@
+load base2140conf.rb
+P33='*997225'
+P337='pbx1/phone/vm/mail/7225/'
+P352='VoiceMail'
+P2380='1'
