@@ -10,8 +10,9 @@ open("#{out_file}","w") do | f|
     if  (l.match(/^#/)) || (l == "\n")
       next
     else
-      attr = l.split("=")[0]
-      val = l.split("=")[1].to_s
+      ll = l.split("=",2)
+      attr = ll[0]
+      val = ll[1]
       val = val.chomp
       special = "?<>',?[]}{=-)(*&^%$#`~{}@"
       regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
@@ -21,7 +22,7 @@ open("#{out_file}","w") do | f|
        if arr.include?(attr)
          puts "found"
        else
-        f.puts "#{attr}: #{val}"
+         f.puts "#{attr}: #{val}"
       end
     end
 
