@@ -1,5 +1,4 @@
 Download config file by loggin into the phone using web interface and run the following commands
-sed -e '/=$/d' -e "s/=/='/" -e "s/$/'/" /tmp/config.txt > /tmp/config1.txt
-remove P8214,P270,P47,P35,P3,P33,P417,P402,P404,P406,P407,P426,P517,P502,P504,P506,P507,P526,P337,P352 entry from the newly created file(if any exist)
 
-remove lines which are comments
+remove P8214 entry from the newly created file
+Then run writeconf_yaml.rb INPUTFILE OUTPUTFILE to prodece the desired yaml file 
