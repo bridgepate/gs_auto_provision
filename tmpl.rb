@@ -108,7 +108,7 @@ class Writefile
       mainconf = init_val.fillvalues(mainconf,model) #fill the hash with null values 
       mac = value[:macaddress].downcase
       kkk = value[:config]
-      open("/tmp/confnew/cfg#{mac}.xml",'w') do |f|
+      open("/var/lib/tftpboot/cfg#{mac}.xml",'w') do |f|
         #write the header
         puts "Generating cfg#{mac}.xml file"
         f.puts "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
