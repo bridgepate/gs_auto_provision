@@ -23,3 +23,12 @@ P321: 7002
 P353: 4
 P355: Helpdesk
 P356: 7003
+#Attributes for different ring tones
+P1488: Internal
+P1489: 2
+P1490: External
+P1491: 3
+P1494: Internal
+P1495: 2
+P1496: External
+P1497: 3
