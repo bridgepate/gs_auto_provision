@@ -309,26 +309,26 @@ CONFIG = {
   :'gxp2140-071' => {
     :macaddress => '000B8264BE08',
     :ipaddress => '10.28.1.71',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7221',:dn => 'bpatel',:displayname => 'Brijesh Patel'}}
   },
   :'gxp2140-072' => {
     :macaddress => '000B82629EE5',
     :ipaddress => '10.28.1.72',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7222',:displayname => 'IT Support'}}
     
   },
   :'gxp2140-073' => {
     :macaddress => '000B82629E9B',
     :ipaddress => '10.28.1.73',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7223',:displayname => 'Counsellor'}}
   },
   :'gxp2140-074' => {
     :macaddress => '000B82629E99',
     :ipaddress => '10.28.1.74',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {
       '1' => {
         :extension => '7224',
@@ -340,39 +340,39 @@ CONFIG = {
   :'gxp2140-075' => {
     :macaddress => '000B82629E9A',
     :ipaddress => '10.28.1.75',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7225',:dn => 'rtaylor',:displayname => 'Ronwyn Taylor'}}
   },
 
   :'gxp2140-076' => {
     :macaddress => '000B82629E9C',
     :ipaddress => '10.28.1.76',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7220',:dn => 'cdyason',:displayname => 'Craig Dyason'}}
   },
   :'gxp2140-077' => {
     :macaddress => '000B82629F27',
     :ipaddress => '10.28.1.77',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7219',:dn => 'jhakaria',:displayname => 'Joe Hakaria'}}
   },
   :'gxp2140-078' => {
     :macaddress => '000B82629F25',
     :ipaddress => '10.28.1.78',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7218',:dn => 'lwoods',:displayname => 'Lucy Woods'}}
   },
   :'gxp2140-079' => {
     :macaddress => '000B82629F28',
     :ipaddress => '10.28.1.79',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7217',:dn => 'dsapsford',:displayname => 'Debbie Sapsford'}}
   },
 
   :'gxp2140-080' => {
     :macaddress => '000B82629F26',
     :ipaddress => '10.28.1.80',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7216',:dn => 'kroutledge-uribe',:displayname => 'Kelly Routledge-Uribe'}}
   },
   :'gxp2140-081' => {
@@ -384,85 +384,85 @@ CONFIG = {
   :'gxp2140-082' => {
     :macaddress => '000B8264BE0B',
     :ipaddress => '10.28.1.82',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7207',:dn => 'nbent',:displayname => 'Nigel Bent'}}
   },
   :'gxp2140-083' => {
     :macaddress => '000B82629EE7',
     :ipaddress => '10.28.1.83',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7203',:dn => 'hchalmers',:displayname => 'Hamish Chalmers'}}
   },
   :'gxp2140-084' => {
     :macaddress => '000B82629EE6',
     :ipaddress => '10.28.1.84',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7204',:dn => 'skiely',:displayname => 'Sharon Kiely'}}
   },
   :'gxp2140-085' => {
     :macaddress => '000B82629F35',
     :ipaddress => '10.28.1.85',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7202',:dn => 'mmakin',:displayname => 'Miranda Makin'}}
   },
   :'gxp2140-086' => {
     :macaddress => '000B82629F36',
     :ipaddress => '10.28.1.86',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7206',:dn => 'croutledge',:displayname => 'Christine Routledge'}}
   },
   :'gxp2140-087' => {
     :macaddress => '000B82629F03',
     :ipaddress => '10.28.1.87',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7201',:dn => 'kkindley',:displayname => 'Kim Kindley'}}
   },
   :'gxp2140-088' => {
     :macaddress => '000B82629F04',
     :ipaddress => '10.28.1.88',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7200',:dn => 'bcavanagh',:displayname => 'Barbara Cavanagh'}}
   },
   :'gxp2140-089' => {
     :macaddress => '000B82629FAA',
     :ipaddress => '10.28.1.89',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7226',:displayname => 'Staff Room'}}
   },
   :'gxp2140-090' => {
     :macaddress => '000B82629FAB',
     :ipaddress => '10.28.1.90',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7227',:dn => 'sjackson',:displayname => 'Sharon Jackson'}}
   },
   :'gxp2140-091' => {
     :macaddress => '000B82629FB0',
     :ipaddress => '10.28.1.91',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7228',:dn => 'dwyatt',:displayname => 'Dorothy Wyatt'}}
   },
   :'gxp2140-092' => {
     :macaddress => '000B82629F02',
     :ipaddress => '10.28.1.92',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7229',:displayname => 'Science L4'}}
   },
   :'gxp2140-093' => {
     :macaddress => '000B82629F37',
     :ipaddress => '10.28.1.93',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7230',:dn => 'jprice',:displayname => 'Jeanette Price'}}
   },
   :'gxp2140-094' => {
     :macaddress => '000B82629F38',
     :ipaddress => '10.28.1.94',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7231',:dn => 'mway',:displayname => 'Michael Way'}}
   },
   :'gxp2140-095' => {
     :macaddress => '000B82629EE8',
     :ipaddress => '10.28.1.95',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7232',:dn => 'khamilton',:displayname => 'Katy Hamilton'}}
     
     
@@ -470,7 +470,7 @@ CONFIG = {
   :'gxp2140-096' => {
     :macaddress => '000B8264BE0A',
     :ipaddress => '10.28.1.96',
-    :config => 'base2140conf.yml',
+    :config => 'admin-std.yml',
     :accounts => {'1' => {:extension => '7233',:dn => 'rclaxton',:displayname => 'Robyn Claxton'}}
     
   }

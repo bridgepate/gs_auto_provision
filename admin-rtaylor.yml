@@ -1,4 +1,4 @@
-config: base2140conf.yml
+config: admin-std.yml
 P33: "*997225"
 P337: pbx1/phone/vm/mail/7225/
 P352: VoiceMail
