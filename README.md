@@ -1,3 +1,4 @@
+:smiley:
 # gs_auto_provision
 This will create auto_provisioning xml files for multiple accounts on same phone
 This program is intended to create auto_provisioning xml files for each mac address specified in the params.txt file.
